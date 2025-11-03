@@ -52,5 +52,5 @@ AssetOrigin:
   productId: 10105
   packageName: Particle Light
   packageVersion: 1.3
-  assetPath: Assets/ParticleLight/Texture/RampBlackFade_PNG.png
+  assetPath: Assets/External/ParticleLight/Texture/RampBlackFade_PNG.png
   uploadId: 218139

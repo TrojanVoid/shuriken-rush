@@ -7,5 +7,5 @@ AssetOrigin:
   productId: 10105
   packageName: Particle Light
   packageVersion: 1.3
-  assetPath: Assets/ParticleLight/Materials/SunLight.mat
+  assetPath: Assets/External/ParticleLight/Materials/SunLight.mat
   uploadId: 218139

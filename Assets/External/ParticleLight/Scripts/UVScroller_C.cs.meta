@@ -15,5 +15,5 @@ AssetOrigin:
   productId: 10105
   packageName: Particle Light
   packageVersion: 1.3
-  assetPath: Assets/ParticleLight/Scripts/UVScroller_C.cs
+  assetPath: Assets/External/ParticleLight/Scripts/UVScroller_C.cs
   uploadId: 218139
