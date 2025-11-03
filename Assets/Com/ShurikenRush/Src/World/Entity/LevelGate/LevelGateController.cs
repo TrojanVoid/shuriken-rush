@@ -7,6 +7,7 @@ namespace Com.ShurikenRush.World.Entity.LevelGate
     public enum GateTriggerType
     {
         Undefined,
+        NoEffect,
         LevelStart,
         LevelEnd,
     }
@@ -39,19 +40,23 @@ namespace Com.ShurikenRush.World.Entity.LevelGate
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Check");
-            if (!other.CompareTag("Player"))
-            {
-                Debug.Log("Fail 1");
+            if (_triggerType == GateTriggerType.NoEffect || !other.CompareTag("Player"))
                 return;
-            }
             if (GlobalContextProvider.PlayerController == null)
             {
-                Debug.Log("Fail 2");
                 throw new MissingFieldException(
                     "[ ENTITY : LEVEL_GATE_CONTROLLER ] No player controller registered at Global Context Provider.");
             }
-            GlobalContextProvider.PlayerController.SetCanMove(_triggerType == GateTriggerType.LevelStart);
+
+            if (_triggerType == GateTriggerType.LevelStart)
+            {
+                GlobalContextProvider.PlayerController.SetCanMoveHorizontal(true);
+            }
+
+            if (_triggerType == GateTriggerType.LevelEnd)
+            {
+                GlobalContextProvider.PlayerController.SetCanMoveVertical(false);
+            }
             Debug.Log("Pass");
         }
         

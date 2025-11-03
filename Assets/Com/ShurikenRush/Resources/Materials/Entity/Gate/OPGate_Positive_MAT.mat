@@ -78,7 +78,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpAmt: 10
-    - _Cutoff: 0.01
+    - _Cutoff: 0.02
     - _EmissionIntensity: 5
     - _FadeDistance: 67.86
     - _FresnelScale: 0.75

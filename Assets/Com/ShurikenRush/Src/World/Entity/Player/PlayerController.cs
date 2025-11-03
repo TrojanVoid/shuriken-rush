@@ -19,8 +19,10 @@ namespace Com.ShurikenRush.World.Entity.Player
         [Header("Motion")]
         [SerializeField] private float _forwardSpeed = 6f;
 
-        private bool _canMove;
-        public bool CanMove => _canMove;
+        private bool _canMoveHorizontal = false;
+        private bool _canMoveVertical = true;
+        public bool CanMoveHorizontal => _canMoveHorizontal;
+        public bool CanMoveVertical => _canMoveVertical;
 
         private void Awake()
         {
@@ -34,7 +36,6 @@ namespace Com.ShurikenRush.World.Entity.Player
 
             GlobalContextProvider.PlayerController = this;
         }
-        
 
         private void Start()
         {
@@ -44,12 +45,13 @@ namespace Com.ShurikenRush.World.Entity.Player
 
         private void FixedUpdate()
         {
-            _transform.position += _transform.forward * (_forwardSpeed * Time.fixedDeltaTime);
+            if(_canMoveVertical)
+                _transform.position += _transform.forward * (_forwardSpeed * Time.fixedDeltaTime);
         }
 
         private void Update()
         {
-            _mass.Tick(Time.deltaTime, _canMove);
+            _mass.Tick(Time.deltaTime, _canMoveHorizontal, _canMoveVertical);
 
             if (_input && _collider)
             {
@@ -58,7 +60,7 @@ namespace Com.ShurikenRush.World.Entity.Player
             if (_input && _mass)
             {
                 _mass.SetTargetWorldX(_input.DesiredWorldX);
-                _mass.Tick(Time.deltaTime, _canMove);
+                _mass.Tick(Time.deltaTime, _canMoveHorizontal, _canMoveVertical);
             }
         }
 
@@ -67,10 +69,16 @@ namespace Com.ShurikenRush.World.Entity.Player
             if(GlobalContextProvider.PlayerController == this) GlobalContextProvider.PlayerController = null;
         }
 
-        public void SetCanMove(bool canMove)
+        public void SetCanMoveHorizontal(bool canMove)
         {
-            _canMove = canMove;
-            GlobalContextProvider.PlayerCanMove = canMove;
+            _canMoveHorizontal = canMove;
+            GlobalContextProvider.PlayerCanMoveHorizontal = canMove;
+        }
+
+        public void SetCanMoveVertical(bool canMove)
+        {
+            _canMoveVertical = canMove;
+            GlobalContextProvider.PlayerCanMoveVertical = canMove;
         }
     }
 }

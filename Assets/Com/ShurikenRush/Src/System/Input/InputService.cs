@@ -31,7 +31,7 @@ namespace Com.ShurikenRush.System.Input
 
         private void Update()
         {
-            if (!GlobalContextProvider.PlayerCanMove)
+            if (!GlobalContextProvider.PlayerCanMoveHorizontal)
                 return;
             
             // Begin drag

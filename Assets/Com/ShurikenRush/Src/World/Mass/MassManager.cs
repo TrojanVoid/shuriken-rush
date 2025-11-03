@@ -57,17 +57,15 @@ namespace Com.ShurikenRush.World.Mass
         }
 
         // Call from PlayerController.Update
-        public void Tick(float dt, bool canMove)
+        public void Tick(float dt, bool canMoveHorizontal, bool canMoveVertical)
         {
             // Move centroid (container local X) toward desired
-            if (canMove)
-            {
-                _centroidLocalX = Mathf.SmoothDamp(_centroidLocalX, _desiredLocalX, ref _centroidVelX, _centroidSmoothTime, Mathf.Infinity, dt);
-                var lp = _containerRoot.localPosition;
-                lp.x = _centroidLocalX;
-                _containerRoot.localPosition = lp;                
-
-            }
+         
+            _centroidLocalX = Mathf.SmoothDamp(_centroidLocalX, _desiredLocalX, ref _centroidVelX, _centroidSmoothTime, Mathf.Infinity, dt);
+            var lp = _containerRoot.localPosition;
+            lp.x = _centroidLocalX;
+            _containerRoot.localPosition = lp;                
+            
         
 
             // Shuriken positioning
