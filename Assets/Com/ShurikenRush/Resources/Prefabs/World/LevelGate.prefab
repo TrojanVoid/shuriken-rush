@@ -287,8 +287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fa2b17e7d24bdf94c96787443aefca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Com.ShurikenRush.World.Entity.LevelGate.LevelGateController
-  _collider: {fileID: 5784215065277501454}
   _triggerType: 0
+  _renderer: {fileID: 5560281373875153278}
+  _collider: {fileID: 5784215065277501454}
+  _text: {fileID: 8353579879168259840}
 --- !u!1 &4494134957788335007
 GameObject:
   m_ObjectHideFlags: 0

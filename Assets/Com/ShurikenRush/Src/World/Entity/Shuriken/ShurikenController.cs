@@ -8,7 +8,8 @@ namespace Com.ShurikenRush.World.Entity.Shuriken
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private MeshRenderer _renderer;
 
-        public Transform CachedTransform => _transform;
+        public Transform Transform => _transform;
+        public Rigidbody Rb => _rb;
 
         private void Awake()
         {

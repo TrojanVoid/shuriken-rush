@@ -1,5 +1,6 @@
 using System;
-using Com.ShurikenRush.System.DIContainer;
+using Com.ShurikenRush.System.DI;
+using TMPro;
 using UnityEngine;
 
 namespace Com.ShurikenRush.World.Entity.LevelGate
@@ -10,11 +11,16 @@ namespace Com.ShurikenRush.World.Entity.LevelGate
         NoEffect,
         LevelStart,
         LevelEnd,
+        StartFight,
     }
     public class LevelGateController : MonoBehaviour
     {
-        [SerializeField] private MeshCollider _collider;
         [SerializeField] private GateTriggerType _triggerType;
+        [SerializeField] private MeshRenderer _renderer;
+        [SerializeField] private MeshCollider _collider;
+        [SerializeField] private TextMeshPro _text;
+        
+        
 
         public void Awake()
         {
@@ -26,9 +32,23 @@ namespace Com.ShurikenRush.World.Entity.LevelGate
 
         private void CheckComponents()
         {
+            if (!_renderer)
+            {
+                _renderer = GetComponent<MeshRenderer>();
+            }
+
+            if (!_renderer)
+            {
+                throw new MissingComponentException("[ ENTITY : LEVEL_GATE_CONTROLLER ] No renderer component found.");
+            }
             if (!_collider)
             {
                 _collider = GetComponent<MeshCollider>();
+            }
+
+            if (!_text)
+            {
+                throw new MissingComponentException(" [ ENTITY : LEVEL_GATE_CONTROLLER ] No TextMeshPro component found.");
             }
 
             if (_triggerType == GateTriggerType.Undefined)
@@ -38,11 +58,18 @@ namespace Com.ShurikenRush.World.Entity.LevelGate
             }
         }
 
+        public void Disable()
+        {
+            _renderer.enabled = false;
+            _collider.enabled = false;
+            _text.renderer.enabled = false;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (_triggerType == GateTriggerType.NoEffect || !other.CompareTag("Player"))
+            if (!other.CompareTag("Player"))
                 return;
-            if (GlobalContextProvider.PlayerController == null)
+            if (GlobalContext.PlayerController == null)
             {
                 throw new MissingFieldException(
                     "[ ENTITY : LEVEL_GATE_CONTROLLER ] No player controller registered at Global Context Provider.");
@@ -50,14 +77,21 @@ namespace Com.ShurikenRush.World.Entity.LevelGate
 
             if (_triggerType == GateTriggerType.LevelStart)
             {
-                GlobalContextProvider.PlayerController.SetCanMoveHorizontal(true);
+                GlobalContext.PlayerController.SetCanMoveHorizontal(true);
             }
 
             if (_triggerType == GateTriggerType.LevelEnd)
             {
-                GlobalContextProvider.PlayerController.SetCanMoveVertical(false);
             }
-            Debug.Log("Pass");
+
+            if (_triggerType == GateTriggerType.StartFight)
+            {
+                GlobalContext.MassCanThrow = true;
+                GlobalContext.PlayerController.SetCanMoveVertical(false);
+                GlobalContext.MassManager.BeginThrowing();
+            }
+
+            Disable();
         }
         
     }

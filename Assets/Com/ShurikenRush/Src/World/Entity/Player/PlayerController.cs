@@ -1,7 +1,6 @@
-using System;
 using System.Linq;
-using Com.ShurikenRush.System.DIContainer;
-using Com.ShurikenRush.System.Input;
+using Com.ShurikenRush.System.DI;
+using Com.ShurikenRush.System.InputBroadcast;
 using UnityEngine;
 using Com.ShurikenRush.World.Mass;
 
@@ -34,7 +33,7 @@ namespace Com.ShurikenRush.World.Entity.Player
                 _collider = GetComponentsInChildren<BoxCollider>().AsEnumerable()
                     .First(col => col.gameObject.CompareTag("Player"));
 
-            GlobalContextProvider.PlayerController = this;
+            GlobalContext.PlayerController = this;
         }
 
         private void Start()
@@ -66,19 +65,19 @@ namespace Com.ShurikenRush.World.Entity.Player
 
         private void OnDestroy()
         {
-            if(GlobalContextProvider.PlayerController == this) GlobalContextProvider.PlayerController = null;
+            if(GlobalContext.PlayerController == this) GlobalContext.PlayerController = null;
         }
 
         public void SetCanMoveHorizontal(bool canMove)
         {
             _canMoveHorizontal = canMove;
-            GlobalContextProvider.PlayerCanMoveHorizontal = canMove;
+            GlobalContext.PlayerCanMoveHorizontal = canMove;
         }
 
         public void SetCanMoveVertical(bool canMove)
         {
             _canMoveVertical = canMove;
-            GlobalContextProvider.PlayerCanMoveVertical = canMove;
+            GlobalContext.PlayerCanMoveVertical = canMove;
         }
     }
 }

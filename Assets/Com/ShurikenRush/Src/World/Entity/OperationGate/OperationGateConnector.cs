@@ -1,5 +1,5 @@
 using System;
-using Com.ShurikenRush.System.DIContainer;
+using Com.ShurikenRush.System.DI;
 using Com.ShurikenRush.System.Operation;
 using Com.ShurikenRush.World.Mass;
 using UnityEngine;
@@ -27,7 +27,7 @@ namespace Com.ShurikenRush.World.Entity.OperationGate
             if (_consumed) return;
             if (!other.CompareTag(_playerTag)) return;
             
-            MassManager massManager = GlobalContextProvider.MassManager;
+            MassManager massManager = GlobalContext.MassManager;
             if (massManager == null)
             {
                 throw new NullReferenceException("[ ENTITY : OPERATION_GATE_CONTROLLER ] MassManager is unassigned in the Global Context Provider.");
