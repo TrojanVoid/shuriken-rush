@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Shuriken
   - Ground
+  - EnemyProjectile
+  - Enemy
+  - PlayerHitbox
+  - PlayerCollider
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - Object
   - Player
   - Volumetrics
-  - 
+  - Enemy Projectile
   - 
   - 
   - 
