@@ -67,7 +67,7 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.LevelGate
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Player"))
+            if (!other.CompareTag("PlayerCollider"))
                 return;
             if (GameContext.PlayerController == null)
             {

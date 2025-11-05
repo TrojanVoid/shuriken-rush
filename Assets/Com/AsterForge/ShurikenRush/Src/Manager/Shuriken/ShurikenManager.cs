@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Com.AsterForge.ShurikenRush.System.Core.DI;
+using Com.AsterForge.ShurikenRush.System.Core.Signal;
+using Com.AsterForge.ShurikenRush.World.Entity.Player;
 using Com.AsterForge.ShurikenRush.World.Entity.Shuriken;
 using UnityEngine;
 
@@ -33,7 +35,7 @@ namespace Com.AsterForge.ShurikenRush.Manager.Shuriken
 
         [SerializeField] private float _massSpinPerSec = 2f;
 
-        // Class Object Life Cycle fields
+        // Class Instance Life Cycle fields
         private readonly List<ShurikenController> _active = new();
         private readonly Stack<ShurikenController> _pool = new();
         
@@ -65,6 +67,16 @@ namespace Com.AsterForge.ShurikenRush.Manager.Shuriken
             _vel = new Vector3[_maxCount];
 
             Debug.Log("[ ENTITY : MASS_MANAGER ] Initialized.");
+        }
+
+        private void OnEnable()
+        {
+            SignalBus.Subscribe<PlayerHitSignal>(OnPlayerHitSignal);
+        }
+
+        private void OnDisable()
+        {
+            SignalBus.Unsubscribe<PlayerHitSignal>(OnPlayerHitSignal);
         }
 
         private void OnDestroy()
@@ -285,6 +297,14 @@ namespace Com.AsterForge.ShurikenRush.Manager.Shuriken
             _pool.Push(shuriken);
         }
 
+        #endregion
+        
+        #region Signal Handlers
+
+        private void OnPlayerHitSignal(PlayerHitSignal signal)
+        {
+            SetCount(_active.Count - signal.Damage);
+        }
         #endregion
     }
 }

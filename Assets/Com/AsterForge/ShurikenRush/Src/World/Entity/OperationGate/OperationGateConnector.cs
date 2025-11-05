@@ -11,7 +11,7 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.OperationGate
     {
         [SerializeField] private OperationGateController _gate;   // assign the OperationGate on parent
         [SerializeField] private bool _destroyAfterUse = true;
-        [SerializeField] private string _playerTag = "Player";
+        [SerializeField] private string _playerTag = "PlayerCollider";
 
         private bool _consumed;
 

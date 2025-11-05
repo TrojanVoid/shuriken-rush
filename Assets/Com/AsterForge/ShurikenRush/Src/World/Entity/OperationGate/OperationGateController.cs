@@ -11,7 +11,7 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.OperationGate
         [SerializeField] private OperationSpec _operation;
 
         [Header("Visuals")]
-        [SerializeField] private MeshRenderer _quadRenderer; // assign the Quad's MeshRenderer
+        [SerializeField] private MeshRenderer _quadRenderer;
 
         [SerializeField] private MeshRenderer _holeRenderer;
         [SerializeField] private Material _positiveMat;
@@ -19,7 +19,7 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.OperationGate
         [SerializeField] private Material _positiveHoleMat;
         [SerializeField] private Material _negativeHoleMat;
         
-        [SerializeField] private TextMeshPro _label;         // assign Text (3D TMP)
+        [SerializeField] private TextMeshPro _label;
 
         public OperationSpec OperationSpec => _operation;
 

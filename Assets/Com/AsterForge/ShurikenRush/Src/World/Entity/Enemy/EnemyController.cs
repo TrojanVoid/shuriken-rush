@@ -3,6 +3,7 @@ using System.Linq;
 using Com.AsterForge.ShurikenRush.Manager.Projectile;
 using Com.AsterForge.ShurikenRush.System.Animator;
 using Com.AsterForge.ShurikenRush.System.Core.Signal;
+using Com.AsterForge.ShurikenRush.World.Entity.Player;
 using UnityEngine;
 
 namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
@@ -16,6 +17,12 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _projectileSpawnRoot;
 
+        [Header("Stats")] 
+        [SerializeField] private int _hitPoints;
+
+        [SerializeField] private int _damage;
+        
+        
         [Header("Behaviour")] 
         [SerializeField] private bool _attacksWithBow;
         [SerializeField] private float _bowAttackInterval;
@@ -27,12 +34,16 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
         public bool  HasThrow => _attacksWithThrow;
         public bool IsAttacking => _isAttacking;
         public bool IsDead => _isDead;
+        public bool IsInitialized => _initialized;
+
         
         private bool _canAttack;
         private bool _isAttacking;
         private bool _canMove;
         private bool _isMoving;
         private bool _isDead;
+        
+        private bool _initialized;
         
         private Dictionary<AttackType, float> _lastAttackTimes;
         private Dictionary<AttackType, float> _attackIntervals;
@@ -42,6 +53,11 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
         private void Awake()
         {
             Initialize();
+        }
+        
+        private void Start()
+        {
+            _initialized = true;
         }
 
         private void Initialize()
@@ -72,7 +88,6 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
             {
                 _renderer = GetComponent<SkinnedMeshRenderer>();
             }
-
             if (_renderer == null)
             {
                 throw new MissingComponentException("[ ENTITY : ENEMY ] No MeshRenderer component attached. ");
@@ -82,17 +97,22 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
             {
                 _collider = GetComponent<BoxCollider>();
             }
-
             if (_collider == null)
             {
                 throw new MissingComponentException("[ ENTITY : ENEMY ] No MeshCollider component attached. ");
             }
+
+            if (!_collider.TryGetComponent(out EnemyColliderConnector comp))
+            {
+                throw new MissingComponentException(
+                    "[ ENTITY : ENEMY ] No EnemyColliderConnector component attached to the Collider GameObject.");
+            }
+            comp.SetDamage(_damage);
             
             if (_animator == null)
             {
                 _animator = GetComponent<Animator>();
             }
-
             if (_animator == null)
             {
                 throw new MissingComponentException("[ ENTITY : ENEMY ] No Animator component attached. ");
@@ -101,10 +121,9 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
         }
         #endregion
         
-        #region Animation Interface
+        #region Animation 
             public void TriggerAnimationState(EnemyAnimationState animationState)
             {
-                Debug.Log("Triggering animation state: " + animationState);
                 _animator.SetTrigger(animationState.ToString());
             }
 
@@ -116,13 +135,13 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
             // Called by Event trigger in the Unity Animation Clip
             private void OnProjectileRelease()
             {
-                ProjectileSpawnSignal signal = new ProjectileSpawnSignal(_projectileSpawnRoot, transform.forward.normalized);
+                ProjectileSpawnSignal signal = new ProjectileSpawnSignal(_projectileSpawnRoot, transform.forward.normalized, _damage, false);
                 SignalBus.FireSignal<ProjectileSpawnSignal>(signal);
             }
             
         #endregion
         
-        #region Attack Behaviour
+        #region Combat Behaviour
 
         private int GetAttackMask()
         {
@@ -143,17 +162,22 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
         private AttackType SelectAttackOption()
         {
             if (!_canAttack) return AttackType.None;
-            if (!_isAttacking) return _availableAttacks[Random.Range(0, _availableAttacks.Count)];
-            return _lastAttackTimes
-                .First(pair => Time.time - pair.Value >= _attackIntervals[pair.Key])
-                .Key;
+
+            foreach (var pair in _lastAttackTimes)
+            {
+                if (Time.time - pair.Value >= _attackIntervals[pair.Key])
+                    return pair.Key;
+            }
+
+            return AttackType.None;
         }
 
         public void StartAttack()
         {
             _canAttack = true;
+            _canMove = false;
             AttackType attackType = DetermineNextAttack(GetAttackMask());
-            if (attackType != AttackType.None) return;
+            if (attackType == AttackType.None) return;
             _isAttacking = true;
             
             switch (attackType)
@@ -163,6 +187,28 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
             }
             
              _lastAttackTimes[attackType] = Time.time;
+        }
+        
+        public void StopAttack()
+        {
+            _canAttack = false;
+            _isAttacking = false;
+            _canMove = true;
+            Stop();
+        }
+
+        public void TakeDamage(int damage = 1)
+        {
+            _hitPoints = _hitPoints - damage >= 0 ? damage : 0;
+            if (_hitPoints == 0) HandleDeath();
+        }
+
+        private void HandleDeath()
+        {
+            _isDead = false;
+            _canMove = false;
+            StopAttack();
+            Destroy(gameObject);
         }
         
         #endregion

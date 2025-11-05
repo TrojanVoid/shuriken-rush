@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Com.AsterForge.ShurikenRush.System.Core.DI;
+using Com.AsterForge.ShurikenRush.System.Core.Signal;
 using Com.AsterForge.ShurikenRush.World.Entity.Enemy;
 using Com.AsterForge.ShurikenRush.World.Entity.Player;
 using UnityEngine;
@@ -54,18 +55,32 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
 
         public void Tick()
         {
-            _enemies
-                .FindAll(enemy => IsEnemyInRange(enemy.transform.position) && !enemy.IsAttacking && !enemy.IsDead)
-                .ForEach(enemy =>
-                {   
+            if (!_player || !_enemies.Any(e => e != null)) return;
+
+            _enemies.ForEach(enemy =>
+            {
+                if (!enemy.IsInitialized) return;
+                if (IsEnemyInRange(enemy.transform.position) && !enemy.IsAttacking && !enemy.IsDead)
                     enemy.StartAttack();
-                });
+                else
+                    enemy.StopAttack();
+            });
         }
 
-        private bool IsEnemyInRange(Vector3 enemyPos)
+        private void OnEnable()
         {
-            float dist = (_player.transform.position - enemyPos).magnitude;
-            return dist <= _enemyAttackRange;
+            SignalBus.Subscribe<EnemyHitSignal>(OnEnemyHitSignal);
+        }
+
+        private void OnDisable()
+        {
+            SignalBus.Unsubscribe<EnemyHitSignal>(OnEnemyHitSignal);
+        }
+
+        private void OnEnemyHitSignal(EnemyHitSignal signal)
+        {
+            var enemy = signal.EnemyHit;
+            enemy.TakeDamage();
         }
 
         private void ValidateComponents()
@@ -75,6 +90,13 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
                 throw new MissingComponentException("[MANAGER : ENEMY MANAGER] Enemies Parent Root is missing.");
             }
         }
+        
+        private bool IsEnemyInRange(Vector3 enemyPos)
+        {
+            float dist = (_player.transform.position - enemyPos).magnitude;
+            return dist <= _enemyAttackRange;
+        }
+        
 
         private List<EnemyController> FindEnemiesInScene()
         {
