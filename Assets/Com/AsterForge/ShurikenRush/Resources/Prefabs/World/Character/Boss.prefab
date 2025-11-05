@@ -12,17 +12,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8681316172240395304, guid: 056f5f69d5b57364b8e74ada9a9bba26, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.030206341
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681316172240395304, guid: 056f5f69d5b57364b8e74ada9a9bba26, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.38250798
+      objectReference: {fileID: 0}
     - target: {fileID: 9026484952138724808, guid: 056f5f69d5b57364b8e74ada9a9bba26, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 9026484952138724808, guid: 056f5f69d5b57364b8e74ada9a9bba26, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 9026484952138724808, guid: 056f5f69d5b57364b8e74ada9a9bba26, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 9026484952138724808, guid: 056f5f69d5b57364b8e74ada9a9bba26, type: 3}
       propertyPath: m_LocalPosition.x

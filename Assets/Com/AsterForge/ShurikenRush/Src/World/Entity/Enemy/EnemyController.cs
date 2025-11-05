@@ -199,13 +199,16 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
 
         public void TakeDamage(int damage = 1)
         {
-            _hitPoints = _hitPoints - damage >= 0 ? damage : 0;
+            
+            _hitPoints = _hitPoints - damage >= 0 ? _hitPoints - damage : 0;
+            Debug.Log("Enemy Take Damage, Hit point: " + _hitPoints);
             if (_hitPoints == 0) HandleDeath();
         }
 
         private void HandleDeath()
         {
-            _isDead = false;
+            Debug.Log("Enemy Handle Death");
+            _isDead = true;
             _canMove = false;
             StopAttack();
             Destroy(gameObject);

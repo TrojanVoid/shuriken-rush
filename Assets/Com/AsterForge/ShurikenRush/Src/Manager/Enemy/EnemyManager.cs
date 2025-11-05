@@ -55,14 +55,16 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
 
         public void Tick()
         {
+            _enemies.RemoveAll(enemy => enemy.IsDead);
             if (!_player || !_enemies.Any(e => e != null)) return;
 
             _enemies.ForEach(enemy =>
             {
                 if (!enemy.IsInitialized) return;
-                if (IsEnemyInRange(enemy.transform.position) && !enemy.IsAttacking && !enemy.IsDead)
+                bool inRange = IsEnemyInRange(enemy.transform.position); 
+                if ( inRange && !enemy.IsAttacking)
                     enemy.StartAttack();
-                else
+                else if( !inRange && enemy.IsAttacking)
                     enemy.StopAttack();
             });
         }

@@ -13,7 +13,7 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
         {
             if (gameObject.transform.parent == null)
             {
-                throw new MissingComponentException("[ ENTITY : ENEMY COLLIDER CONNECTOR ] No parent GameObject found.");
+                throw new MissingComponentException("[ ENTITY : ENEMY COLLIDER CONNECTOR ] No parent GameObject(EnemyController GO) found.");
             }
 
             if (!gameObject.transform.parent.TryGetComponent<EnemyController>(out var enemyController))
@@ -31,7 +31,7 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
                 SignalBus.FireSignal<PlayerHitSignal>(signal);
             }
 
-            if (other.gameObject.CompareTag("Shuriken"))
+            if (other.isTrigger && other.gameObject.CompareTag("Shuriken"))
             {
                 SignalBus.FireSignal<EnemyHitSignal>(new EnemyHitSignal(_enemyController));
             }
