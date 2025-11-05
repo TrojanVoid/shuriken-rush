@@ -79,9 +79,9 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
             SignalBus.Unsubscribe<EnemyHitSignal>(OnEnemyHitSignal);
         }
 
-        private void OnEnemyHitSignal(EnemyHitSignal signal)
+        private void OnEnemyHitSignal(EnemyHitSignal enemyHitSignal)
         {
-            var enemy = signal.EnemyHit;
+            var enemy = enemyHitSignal.EnemyHit;
             enemy.TakeDamage();
         }
 

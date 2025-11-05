@@ -4,7 +4,7 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Player
 {
     public class PlayerHitSignal : BaseSignal
     {
-        public int Damage;
+        public readonly int Damage;
 
         public PlayerHitSignal(int damage, bool isDebugMessage=true) : base(isDebugMessage)
         {
