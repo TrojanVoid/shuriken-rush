@@ -1,0 +1,43 @@
+using UnityEngine;
+
+namespace Com.AsterForge.ShurikenRush.World.Entity.Shuriken
+{
+    public class ShurikenController : MonoBehaviour
+    {
+        [SerializeField] private Transform _transform;
+        [SerializeField] private Rigidbody _rb;
+
+        public Transform Transform => _transform;
+        public Rigidbody Rb => _rb;
+
+        private void Awake()
+        {
+            if (!_transform) _transform = transform;
+            if (_rb)
+            {
+                _rb.isKinematic = true;
+                _rb.useGravity = false;
+            }
+        }
+
+        public void Activate()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Deactivate()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void SetLocalPosition(in Vector3 lp)
+        {
+            _transform.localPosition = lp;
+        }
+
+        public void RotateY(float degrees)
+        {
+            _transform.Rotate(0f, degrees, 0f, Space.Self);
+        }
+    }
+}
