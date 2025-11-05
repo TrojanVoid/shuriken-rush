@@ -4,9 +4,9 @@ using Com.ShurikenRush.System.DI;
 using UnityEngine;
 using Com.ShurikenRush.World.Entity.Shuriken;
 
-namespace Com.ShurikenRush.World.Mass
+namespace Com.ShurikenRush.Manager.ShurikenManager
 {
-    public class MassManager : MonoBehaviour
+    public class ShurikenManager : MonoBehaviour
     {
         [Header("Wiring")]
         [SerializeField] private Transform _massShurikensParent;           // Player/ShurikenContainer
@@ -59,7 +59,7 @@ namespace Com.ShurikenRush.World.Mass
             if(!_thrownShurikensParent) Debug.LogError("[ MASS MANAGER ] Thrown Shurikens Parent Game Object is not set");
             if (!_playerRoot && _massShurikensParent) _playerRoot = _massShurikensParent.parent;
             if (!_shurikenPrefab) Debug.LogError("[MassManager] Shuriken Prefab is not set.");
-            GlobalContext.MassManager = this;
+            GlobalContext.ShurikenManager = this;
             Bootstrap(_initialCount);
             PrecomputeSlots(_maxCount, _slotSpacing);
             _vel = new Vector3[_maxCount];
@@ -69,7 +69,7 @@ namespace Com.ShurikenRush.World.Mass
 
         private void OnDestroy()
         {
-            if(GlobalContext.MassManager == this) GlobalContext.MassManager = null;
+            if(GlobalContext.ShurikenManager == this) GlobalContext.ShurikenManager = null;
         }
 
         // Call from PlayerController.Update
