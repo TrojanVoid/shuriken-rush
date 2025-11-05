@@ -210,12 +210,22 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
             Debug.Log("Enemy Handle Death");
             _isDead = true;
             _canMove = false;
-            StopAttack();
-            Destroy(gameObject);
+            TriggerAnimationState(EnemyAnimationState.Die);
+        }
+
+        public void OnAnimationStateExit(AnimatorStateInfo stateInfo)
+        {
+            if (stateInfo.IsName(nameof(EnemyAnimationState.Die)))
+            {
+                Debug.Log("Enemy Destroy");
+                Destroy(gameObject);
+            }
         }
         
         #endregion
 
         
     }
+    
+    
 }

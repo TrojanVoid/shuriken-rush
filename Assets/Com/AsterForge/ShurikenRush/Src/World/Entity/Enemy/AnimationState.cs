@@ -8,5 +8,6 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
         Idle,
         AttackThrow,
         AttackBow,
+        Die,
     }
 }
