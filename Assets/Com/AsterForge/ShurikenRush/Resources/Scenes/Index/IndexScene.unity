@@ -340,7 +340,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &707051797
 RectTransform:
@@ -399,9 +399,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 707051797}
     m_Modifications:
+    - target: {fileID: 258411407612508999, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2456740440168055231, guid: f1409abba69daa2479de9cc37a244293, type: 3}
       propertyPath: m_Name
       value: ButtonContainer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456740440168055231, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2935019630967886188, guid: f1409abba69daa2479de9cc37a244293, type: 3}
       propertyPath: m_Pivot.x
@@ -487,6 +495,14 @@ PrefabInstance:
       propertyPath: m_text
       value: levels
       objectReference: {fileID: 0}
+    - target: {fileID: 6305733032244848037, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880101471760110896, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -514,7 +530,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1125376874
 MonoBehaviour:
@@ -615,7 +631,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1188342274
 RectTransform:
@@ -645,9 +661,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 707051797}
     m_Modifications:
+    - target: {fileID: 258411407612508999, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2456740440168055231, guid: f1409abba69daa2479de9cc37a244293, type: 3}
       propertyPath: m_Name
       value: ButtonContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456740440168055231, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2935019630967886188, guid: f1409abba69daa2479de9cc37a244293, type: 3}
       propertyPath: m_Pivot.x
@@ -733,6 +757,14 @@ PrefabInstance:
       propertyPath: m_text
       value: play
       objectReference: {fileID: 0}
+    - target: {fileID: 6305733032244848037, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880101471760110896, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -776,7 +808,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  sharedProfile: {fileID: 11400000, guid: cc481a4f911f03a49b079f310d61a8a8, type: 2}
 --- !u!4 &1773663112
 Transform:
   m_ObjectHideFlags: 0
@@ -800,9 +832,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 707051797}
     m_Modifications:
+    - target: {fileID: 258411407612508999, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2456740440168055231, guid: f1409abba69daa2479de9cc37a244293, type: 3}
       propertyPath: m_Name
       value: ButtonContainer (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456740440168055231, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2935019630967886188, guid: f1409abba69daa2479de9cc37a244293, type: 3}
       propertyPath: m_Pivot.x
@@ -888,6 +928,14 @@ PrefabInstance:
       propertyPath: m_text
       value: "qu\u0131t\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 6305733032244848037, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880101471760110896, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -906,9 +954,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 707051797}
     m_Modifications:
+    - target: {fileID: 258411407612508999, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2456740440168055231, guid: f1409abba69daa2479de9cc37a244293, type: 3}
       propertyPath: m_Name
       value: ButtonContainer (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456740440168055231, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2935019630967886188, guid: f1409abba69daa2479de9cc37a244293, type: 3}
       propertyPath: m_Pivot.x
@@ -994,6 +1050,14 @@ PrefabInstance:
       propertyPath: m_text
       value: "sett\u0131ngs"
       objectReference: {fileID: 0}
+    - target: {fileID: 6305733032244848037, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880101471760110896, guid: f1409abba69daa2479de9cc37a244293, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1020,7 +1084,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1922400690
 RectTransform:
@@ -1156,7 +1220,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &2018082235
 RectTransform:
@@ -1331,7 +1395,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
