@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Com.ShurikenRush.World.Entity.OperationGate.OperationGateConnector
   _gate: {fileID: 3144528976474441321}
   _destroyAfterUse: 1
-  _playerTag: Player
+  _playerTag: PlayerCollider
 --- !u!1 &6455563270067844104
 GameObject:
   m_ObjectHideFlags: 0

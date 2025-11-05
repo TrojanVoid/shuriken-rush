@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5705560430325373607}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LevelGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3697475332163439220}
   - component: {fileID: 441370231264951113}
   - component: {fileID: 6742888238867267471}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
