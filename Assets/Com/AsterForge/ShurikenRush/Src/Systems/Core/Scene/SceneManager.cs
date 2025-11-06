@@ -11,8 +11,6 @@ namespace Com.AsterForge.ShurikenRush.Systems.Core.Scene
     
     public class SceneManager : MonoBehaviour
     {
-        
-        
         [Header("Scene Names")]
         [SerializeField] private string mainMenuSceneName = "MainMenu";
         [SerializeField] private string loadingSceneName = "LoadingScene";

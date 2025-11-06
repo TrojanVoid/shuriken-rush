@@ -16,7 +16,8 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
 
         private PlayerController _player;
         private List<EnemyController> _enemies;
-        
+
+        private bool _isActive = true;
 
         #region Unity Object Life Cycle
         private void Awake()
@@ -56,6 +57,7 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
 
         public void Tick()
         {
+            if (!_isActive) return;
             bool levelCleared = true;
             _enemies.RemoveAll(enemy => enemy.IsDead);
             if (!_player || !_enemies.Any(e => e != null)) return;
@@ -74,6 +76,7 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
             if (levelCleared)
             {
                 SignalBus.FireSignal<LevelClearSignal>(new LevelClearSignal());
+                _isActive = false;
             }
         }
 
