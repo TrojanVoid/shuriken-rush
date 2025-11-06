@@ -1,7 +1,7 @@
 
 using Com.AsterForge.ShurikenRush.Manager.Shuriken;
-using Com.AsterForge.ShurikenRush.System.Core.DI;
-using Com.AsterForge.ShurikenRush.System.Core.InputBroadcast;
+using Com.AsterForge.ShurikenRush.Systems.Core.DI.Context;
+using Com.AsterForge.ShurikenRush.Systems.Core.InputBroadcast;
 using UnityEngine;
 
 namespace Com.AsterForge.ShurikenRush.World.Entity.Player

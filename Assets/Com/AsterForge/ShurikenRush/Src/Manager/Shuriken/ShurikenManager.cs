@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Com.AsterForge.ShurikenRush.System.Core.DI;
-using Com.AsterForge.ShurikenRush.System.Core.Signal;
+using Com.AsterForge.ShurikenRush.Systems.Core.DI.Context;
+using Com.AsterForge.ShurikenRush.Systems.Core.Observability;
 using Com.AsterForge.ShurikenRush.World.Entity.Player;
 using Com.AsterForge.ShurikenRush.World.Entity.Shuriken;
 using UnityEngine;

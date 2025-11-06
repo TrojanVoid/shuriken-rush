@@ -1,0 +1,39 @@
+using Com.AsterForge.ShurikenRush.Systems.Core.Observability;
+using Com.AsterForge.ShurikenRush.UserInterface.Signal;
+using UnityEngine;
+
+namespace Com.AsterForge.ShurikenRush.UserInterface.Menu
+{
+    public class MenuController : MonoBehaviour
+    {
+        [Header("Wiring")]
+        [SerializeField] private Canvas _canvas;
+
+        private void Awake()
+        {
+            if (_canvas == null)
+            {
+                if (!TryGetComponent(out Canvas canvas))
+                    throw new MissingComponentException(
+                        "[ UI - MENU CONTROLLER ] No Canvas component found on the game object.");
+                _canvas = canvas;
+            }
+            
+        }
+
+        private void OnEnable()
+        {
+            SignalBus.Subscribe<PauseMenuTriggeredSignal>(OnPauseMenuTriggered);
+        }
+
+        private void OnDisable()
+        {
+            SignalBus.Unsubscribe<PauseMenuTriggeredSignal>(OnPauseMenuTriggered);
+        }
+
+        private void OnPauseMenuTriggered(PauseMenuTriggeredSignal signal)
+        {
+            _canvas.enabled = !_canvas.enabled;
+        }
+    }
+}

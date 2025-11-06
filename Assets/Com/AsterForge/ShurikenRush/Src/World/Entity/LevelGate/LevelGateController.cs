@@ -1,5 +1,5 @@
 using System;
-using Com.AsterForge.ShurikenRush.System.Core.DI;
+using Com.AsterForge.ShurikenRush.Systems.Core.DI.Context;
 using TMPro;
 using UnityEngine;
 

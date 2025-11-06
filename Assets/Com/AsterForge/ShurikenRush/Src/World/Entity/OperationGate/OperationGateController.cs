@@ -1,4 +1,4 @@
-using Com.AsterForge.ShurikenRush.System.Operation;
+using Com.AsterForge.ShurikenRush.Systems.Operation;
 using TMPro;
 using UnityEngine;
 

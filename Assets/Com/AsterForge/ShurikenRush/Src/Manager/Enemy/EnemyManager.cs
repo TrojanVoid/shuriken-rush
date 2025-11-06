@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Com.AsterForge.ShurikenRush.System.Core.DI;
-using Com.AsterForge.ShurikenRush.System.Core.Signal;
+using Com.AsterForge.ShurikenRush.Systems.Core.DI.Context;
+using Com.AsterForge.ShurikenRush.Systems.Core.Observability;
+using Com.AsterForge.ShurikenRush.Systems.Level.Signal;
 using Com.AsterForge.ShurikenRush.World.Entity.Enemy;
 using Com.AsterForge.ShurikenRush.World.Entity.Player;
 using UnityEngine;
@@ -55,6 +56,7 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
 
         public void Tick()
         {
+            bool levelCleared = true;
             _enemies.RemoveAll(enemy => enemy.IsDead);
             if (!_player || !_enemies.Any(e => e != null)) return;
 
@@ -66,7 +68,13 @@ namespace Com.AsterForge.ShurikenRush.Manager.Enemy
                     enemy.StartAttack();
                 else if( !inRange && enemy.IsAttacking)
                     enemy.StopAttack();
+                if(enemy.IsLevelClearTarget)  levelCleared = false;
             });
+
+            if (levelCleared)
+            {
+                SignalBus.FireSignal<LevelClearSignal>(new LevelClearSignal());
+            }
         }
 
         private void OnEnable()

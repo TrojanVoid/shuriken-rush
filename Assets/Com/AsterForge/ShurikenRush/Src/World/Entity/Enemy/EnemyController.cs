@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Com.AsterForge.ShurikenRush.Manager.Projectile;
-using Com.AsterForge.ShurikenRush.System.Animator;
-using Com.AsterForge.ShurikenRush.System.Core.Signal;
+using Com.AsterForge.ShurikenRush.Systems.Animator;
+using Com.AsterForge.ShurikenRush.Systems.Core.Observability;
 using Com.AsterForge.ShurikenRush.World.Entity.Player;
 using UnityEngine;
 
@@ -17,9 +17,11 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _projectileSpawnRoot;
 
+        [Header("Does this enemy need to die to complete the level?")] 
+        [SerializeField] private bool _isLevelClearTarget = false;
+        
         [Header("Stats")] 
         [SerializeField] private int _hitPoints;
-
         [SerializeField] private int _damage;
         
         
@@ -29,7 +31,8 @@ namespace Com.AsterForge.ShurikenRush.World.Entity.Enemy
 
         [SerializeField] private bool _attacksWithThrow;
         [SerializeField] private float _throwInterval;
-        
+
+        public bool IsLevelClearTarget => _isLevelClearTarget;
         public bool  HasBow => _attacksWithBow;
         public bool  HasThrow => _attacksWithThrow;
         public bool IsAttacking => _isAttacking;

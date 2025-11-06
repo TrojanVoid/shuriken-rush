@@ -1,4 +1,4 @@
-using Com.AsterForge.ShurikenRush.System.Core.Signal;
+using Com.AsterForge.ShurikenRush.Systems.Core.Observability;
 using UnityEngine;
 
 namespace Com.AsterForge.ShurikenRush.Manager.Projectile
