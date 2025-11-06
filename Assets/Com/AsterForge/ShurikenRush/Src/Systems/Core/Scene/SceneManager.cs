@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Com.AsterForge.ShurikenRush.Systems.Core.DI.Bootstrapper;
 using Com.AsterForge.ShurikenRush.Systems.Core.DI.Context;
+using Com.AsterForge.ShurikenRush.UserInterface.State;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,11 +30,13 @@ namespace Com.AsterForge.ShurikenRush.Systems.Core.Scene
         public void LoadMainMenu()
         {
             LoadScene(mainMenuSceneName);
+            GameState.CurrentState = GameStateType.MainMenu;
         }
 
         public void LoadLevel(string sceneName)
         {
             LoadScene(sceneName);
+            GameState.CurrentState = GameStateType.Ingame;
         }
 
         private void LoadScene(string sceneName)

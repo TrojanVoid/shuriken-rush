@@ -12,17 +12,25 @@ namespace Com.AsterForge.ShurikenRush.Systems.Level.Service
     {
         public LevelService()
         {
-            SignalBus.Subscribe<PlayButtonPressedSignal>(OnPlayButtonPressed);
+            SignalBus.Subscribe<StartLevelSignal>(OnStartLevelSignal);
             SignalBus.Subscribe<LevelClearSignal>(OnLevelClear);
         }
         
         public string IndexToLevelName(int levelIndex) =>  $"Level_{levelIndex:D2}";
 
 
-        private void OnPlayButtonPressed(PlayButtonPressedSignal signal)
+        private void OnStartLevelSignal(StartLevelSignal signal)
         {
-            var currentLevel = LevelProgressData.GetHighestUnlockedLevel();
-            GlobalContext.SceneManager.LoadLevel(IndexToLevelName(currentLevel));
+            if (signal.LevelIndex == -1) // default value which means continue from last unlocked level
+            {
+                var currentLevel = LevelProgressData.GetHighestUnlockedLevel();
+                GlobalContext.SceneManager.LoadLevel(IndexToLevelName(currentLevel));
+            }
+            else
+            {
+                GlobalContext.SceneManager.LoadLevel(IndexToLevelName(signal.LevelIndex));
+            }
+            
         }
 
 

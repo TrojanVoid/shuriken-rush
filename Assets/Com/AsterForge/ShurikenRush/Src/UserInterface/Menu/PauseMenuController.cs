@@ -1,5 +1,6 @@
 using Com.AsterForge.ShurikenRush.Systems.Core.Observability;
 using Com.AsterForge.ShurikenRush.UserInterface.Signal;
+using Com.AsterForge.ShurikenRush.UserInterface.State;
 using UnityEngine;
 
 namespace Com.AsterForge.ShurikenRush.UserInterface.Menu
@@ -33,7 +34,10 @@ namespace Com.AsterForge.ShurikenRush.UserInterface.Menu
 
         private void OnPauseMenuTriggered(PauseMenuTriggeredSignal signal)
         {
-            _canvas.enabled = !_canvas.enabled;
+            bool isEnabled = _canvas.enabled;
+            _canvas.enabled = !isEnabled;
+            if (!isEnabled) GameState.CurrentState = GameStateType.PauseMenu;
+
         }
     }
 }
