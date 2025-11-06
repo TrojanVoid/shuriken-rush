@@ -15,6 +15,7 @@ EditorBuildSettings:
     path: Assets/Com/AsterForge/ShurikenRush/Resources/Scenes/Levels/Level_02.unity
     guid: 71db38e892e578542adea2b5e5324e4d
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 7223319a8a880c447949ca41ad15b7bc, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 72f27b83b19aece4f9220276ad99d0c0, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
