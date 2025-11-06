@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Com.AsterForge.ShurikenRush.UserInterface.Menu
 {
-    public class MenuController : MonoBehaviour
+    public class PauseMenuController : MonoBehaviour
     {
         [Header("Wiring")]
         [SerializeField] private Canvas _canvas;

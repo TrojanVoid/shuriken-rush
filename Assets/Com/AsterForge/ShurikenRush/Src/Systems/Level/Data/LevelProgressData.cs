@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Com.AsterForge.ShurikenRush.Systems.Level.Data
@@ -16,7 +17,7 @@ namespace Com.AsterForge.ShurikenRush.Systems.Level.Data
             if (_initialized) return;
             _configSo = configSo;
             _initialized = true;
-            _unlockedLevel = PlayerPrefs.GetInt(PREFS_KEY, 1); // default: Level_01 unlocked
+            _unlockedLevel = Math.Max(1, PlayerPrefs.GetInt(PREFS_KEY, 1)); // default: Level_01 unlocked
         }
 
         public static int GetHighestUnlockedLevel()

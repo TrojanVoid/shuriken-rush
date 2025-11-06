@@ -86,7 +86,9 @@ namespace Com.AsterForge.ShurikenRush.UserInterface.Button
 
                 case SceneType.Game:
                     Debug.Log("Exit button pressed in Game — returning to Main Menu...");
+                    SignalBus.FireSignal(new PauseMenuTriggeredSignal());
                     GlobalContext.SceneManager.LoadMainMenu();
+                    
                     break;
 
                 case SceneType.Loading:
